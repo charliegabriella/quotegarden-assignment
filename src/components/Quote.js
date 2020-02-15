@@ -7,17 +7,44 @@ export default class Quote extends Component {
     color: "black"
   };
 
+  handleNumlikes = () => {
+    this.setState({
+      numLikes: true
+    });
+
+    if (this.state.numLikes === null) {
+      this.props.setLikes();
+    }
+
+    if (this.state.numLikes === false) {
+      this.props.setLikes();
+      this.props.deletenumDislikes();
+    }
+  };
+
+  handleNumdislikes = () => {
+    this.setState({
+      numLikes: false
+    });
+
+    if (this.state.numLiked === true) {
+      this.props.setDisliked();
+      this.props.deleteNumliked();
+    }
+
+    if (this.state.numLiked === null) {
+      this.props.setDisliked();
+    }
+  };
   incrementLikes = () => {
     this.setState({
-      color: "pink",
-      numLikes: this.state.numLikes + 1
+      color: "pink"
     });
   };
 
   decrementLikes = () => {
     this.setState({
-      color: "grey",
-      numLikes: this.state.numLikes - 1
+      color: "grey"
     });
   };
 
@@ -26,7 +53,7 @@ export default class Quote extends Component {
     return (
       <div>
         <div>
-          <h3 style={{ color: this.state.color }}> {this.props.quoteText}</h3>{" "}
+          <h3 style={{ color: this.state.color }}> {this.props.quoteText}</h3>
           {/* change the color of the text when it's*/}
         </div>
         <div>
@@ -34,14 +61,20 @@ export default class Quote extends Component {
         </div>
         <br />
         <div className="likeElement">
-          <div className="Display">
-            This quote has <b>{this.state.numLikes}</b> likes!
+          <div className="arrow-up" onClick={this.incrementLikes}>
+            {" "}
+            {this.handleNumlikes}
           </div>
-          <br />
-          <div className="arrow-up" onClick={this.incrementLikes}></div>
-          <div className="arrow-down" onClick={this.decrementLikes}></div>
+          <div className="arrow-down" onClick={this.decrementLikes}>
+            {" "}
+            {this.handleNumdislikes}
+          </div>
         </div>
       </div>
     );
   }
 }
+
+// <div className="Display">
+// This quote has <b>{this.state.numLikes}</b> likes!
+// </div>
