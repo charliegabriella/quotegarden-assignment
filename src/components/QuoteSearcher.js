@@ -13,9 +13,7 @@ export default class QuoteSearcher extends Component {
   search = async keyword => {
     this.setState({ fetching: true });
     const response = await fetch(
-      `https://quote-garden.herokuapp.com/quotes/search/${encodeURIComponent(
-        keyword
-      )}`
+      "https://quote-garden.herokuapp.com/quotes/search/tree"
     );
     // .then(result => response.json())
     // .then(quotjes => {

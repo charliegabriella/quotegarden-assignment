@@ -49,32 +49,26 @@ export default class Quote extends Component {
   };
 
   render() {
-    const {} = this.props;
     return (
       <div>
         <div>
           <h3 style={{ color: this.state.color }}> {this.props.quoteText}</h3>
-          {/* change the color of the text when it's*/}
         </div>
         <div>
           <h4>Wisely spoken by: {this.props.quoteAuthor}</h4>
         </div>
         <br />
-        <div className="likeElement">
-          <div className="arrow-up" onClick={this.incrementLikes}>
-            {" "}
-            {this.handleNumlikes}
-          </div>
-          <div className="arrow-down" onClick={this.decrementLikes}>
-            {" "}
-            {this.handleNumdislikes}
-          </div>
+        <div className="Display">
+          This quote has <b>{this.state.numLikes}</b> likes!
+        </div>
+        <div className="arrow-up" onClick={this.incrementLikes}>
+          {this.handleNumlikes}
+        </div>
+        <div className="arrow-down" onClick={this.decrementLikes}>
+          {" "}
+          {this.handleNumdislikes}
         </div>
       </div>
     );
   }
 }
-
-// <div className="Display">
-// This quote has <b>{this.state.numLikes}</b> likes!
-// </div>
