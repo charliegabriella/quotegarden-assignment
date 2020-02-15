@@ -11,23 +11,26 @@ export default class Search extends Component {
   // }
 
   inputKeyword = event => {
-    this.setState({ value: event.target.value });
+    this.setState({ keyword: event.target.value });
   };
 
-  handleSumbit(event) {
-    this.setState({ value: event.target.value });
-  }
+  handleSumbit = event => {
+    event.preventDefault();
+    this.props.search(this.state.keyword);
+  };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={this.inputKeyword}
-        />
-        <input type="submit" value="Search!" />
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.keyword}
+            onChange={this.inputKeyword}
+          />
+          <button type="submit">Search!</button>
+        </form>
+      </div>
     );
   }
 }

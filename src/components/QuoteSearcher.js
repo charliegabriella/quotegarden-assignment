@@ -4,7 +4,7 @@ import Search from "./Search";
 
 export default class QuoteSearcher extends Component {
   state = {
-    fetching: true,
+    fetching: false,
     quotes: [],
     numLikes: 0,
     numDislikes: 0
@@ -23,12 +23,11 @@ export default class QuoteSearcher extends Component {
     // });
 
     const parsedData = await response.json();
-    const resultData = parsedData.results;
+    const resultData = [...parsedData.results];
     this.setState({
-      fetching: false,
+      fetching: true,
       quotes: resultData.map(quote => {
         return {
-          ...quote,
           numLikes: 0,
           numDislikes: 0
         };
