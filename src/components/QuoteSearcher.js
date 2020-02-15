@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Quote from "./Quote";
+import Search from "./Search";
 
 export default class QuoteSearcher extends Component {
   state = {
@@ -9,9 +10,12 @@ export default class QuoteSearcher extends Component {
     numDislikes: 0
   };
 
-  componentDidMount = async () => {
+  search = async keyword => {
+    this.setState({ fetching: true });
     const response = await fetch(
-      "https://quote-garden.herokuapp.com/quotes/search/tree"
+      `https://quote-garden.herokuapp.com/quotes/search/${encodeURIComponent(
+        keyword
+      )}`
     );
     // .then(result => response.json())
     // .then(quotjes => {
@@ -73,6 +77,9 @@ export default class QuoteSearcher extends Component {
     return (
       <div>
         <h1>Some cool quotes from me to you</h1>
+        <div>
+          <Search search={this.search} />
+        </div>
         <h3>
           Likes : {this.state.numLikes} / Dislikes : {this.state.numDislikes}
         </h3>
